@@ -5,8 +5,6 @@ using CommonClassLibrary.SQLFactorys;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 
 namespace CommonClassLibrary.Services
 {
@@ -47,4 +45,4 @@ namespace CommonClassLibrary.Services
             throw new NotImplementedException();
         }
     }
- }
+}

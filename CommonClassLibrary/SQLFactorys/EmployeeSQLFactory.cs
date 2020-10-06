@@ -1,15 +1,11 @@
 ﻿using CommonClassLibrary.Propertys;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CommonClassLibrary.SQLFactorys
 {
     public class EmployeeSQLFactory
     {
         string sql = "";
-        string tableName = CommonClass.DB_OPERATOR;
+        string tableName = CommonClassLibraryGlobal.DB_OPERATOR;
 
         public string SearchOne(EmployeeProperty dataItem)
         {

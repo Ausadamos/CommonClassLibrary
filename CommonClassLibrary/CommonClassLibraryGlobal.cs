@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using System.Web;
 using System.Windows.Forms;
 
 namespace CommonClassLibrary
 {
-    public class CommonClass
+    public static class CommonClassLibraryGlobal
     {
         //DB Name
         public static readonly string DB_OPERATOR = "info_employees";
@@ -19,6 +17,8 @@ namespace CommonClassLibrary
 
         public static string OPERATOR_ID = "";
         public static string Login_TYPE_FORM = "";
+
+        public static string FORM_ACTION_MODE = "";
 
         public static double chkDouble;
         public static int chkInt;
@@ -31,6 +31,16 @@ namespace CommonClassLibrary
         public static void showError(string msg)
         {
             MessageBox.Show(msg, "เกิดข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void showSaveDatabaseSuccess()
+        {
+            MessageBox.Show("บันทึกข้อมูลสำเร็จ", "การแจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void showSaveDatabaseError()
+        {
+            MessageBox.Show("บันทึกข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง", "เกิดข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static string GetLocalIPAddress()
@@ -51,6 +61,36 @@ namespace CommonClassLibrary
             var host = Dns.GetHostEntry(Dns.GetHostName());
             return host.HostName;
             throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
+        public static void DELAY_SAFETY(long ms)
+        {
+            Stopwatch stw = new Stopwatch();
+            stw.Reset();
+            stw.Start();
+
+            while (stw.ElapsedMilliseconds < ms)
+            {
+                Application.DoEvents();
+            }
+            stw.Stop();
+            stw = null;
+        }
+
+        public static void DELAY_OPHIR(long ms)
+        {
+
+            Stopwatch stw = new Stopwatch();  //ทำการเรียกใช้คลาส Stopwatch 
+            stw.Reset();
+            stw.Start();   //เริ่มนับเวลา
+
+            while (stw.ElapsedMilliseconds < ms)
+            {
+
+                Application.DoEvents();
+            }
+            stw.Stop();    //หยุดนับเวลา
+            stw = null;
         }
 
     }
